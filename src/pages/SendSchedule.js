@@ -6,6 +6,11 @@ import HoverInfo from '../components/HoverInfo';
 const SendSchedule = () => {
 
     const [radioValue,setRadioValue] = useState('option1');
+    const [nonOpeners,setNonOpeners] = useState(false);
+    const handleCheckboxNonOpeners= (event) => {
+    setNonOpeners(event.target.checked);
+  };
+
     const radioChange = (value)=>{
       setRadioValue(value);
     }
@@ -38,9 +43,29 @@ const SendSchedule = () => {
         <input
         type="checkbox"
         className="form-checkbox h-4 w-4 text-blue-500 border-blue-500 rounded focus:ring-blue-500 focus:border-blue-500"
+        onClick={handleCheckboxNonOpeners}
         />
         <span className="ml-2 text-gray-700">Don't send to non openers </span>
       </label>   
+      { nonOpeners && <div>
+        <span className='text-lg font-semibold'>Subject Line</span> <span className='text-sm'>(Recommended to choose a new Subject Line)*</span>
+        <div className='flex flex-wrap my-2'>
+          <input
+          type='text'
+          className='border border-gray-400 border-opacity-40 w-[400px] h-[35px] rounded-sm text-sm font-semibold'
+          />
+          <button className='border border-gray-400 border-opacity-40  h-[35px] w-[35px] mx-3 rounded-sm text-sm font-semibold'>:)</button>
+          <button className='border border-gray-400 border-opacity-40 h-[35px] w-[100px] rounded-sm text-sm font-semibold'>Personalize</button>
+        </div>
+        <div className='flex flex-wrap '>
+          <span className='text-md  font-semibold mt-4'>Resend after </span>
+          <input type="number" class="block mx-4 px-2 mt-2 border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+
+          
+          <span className='text-md font-semibold mt-4'> hours</span>
+        </div>
+      </div>}
+
   
     </div>
   
